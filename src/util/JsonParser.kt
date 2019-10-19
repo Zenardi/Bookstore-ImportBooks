@@ -8,7 +8,9 @@ import java.io.File
 
 class JsonParser{
 
-    fun readJsonFileKotlin(jsonFile :String,books: ArrayList<Book>) : ArrayList<Book> {
+    fun readJsonFileKotlin(jsonFile :String, books: ArrayList<Book>) : ArrayList<Book> {
+        var newBookList : ArrayList<Book> = ArrayList()
+        var bookOp: BookOperations = BookOperations()
         var content = File(jsonFile).readText()
 
         content = content.replace("Qty.", "Qty").replace("Age Range", "AgeRange")
@@ -17,10 +19,14 @@ class JsonParser{
         var result = mapper.readValue<List<Book>>(content)
 
         for(book in result){
-            books.add(book)
+            var newIsbn : String = book.ISBN
+            if( book.ISBN[0] == '0')
+                newIsbn =  book.ISBN.substring(1)
+
+           newBookList =  bookOp.CreateUpdateBook(books, book)
         }
 
-        return books
+        return newBookList
     }
 
 }

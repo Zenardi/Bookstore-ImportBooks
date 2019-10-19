@@ -14,7 +14,7 @@ public class Book {
     var Description: String? = null
 
     @JsonProperty("ISBN")
-    var ISBN: String? = null
+    var ISBN: String = String()
 
     @JsonProperty("Author")
     var Author: String? = null
@@ -32,11 +32,11 @@ public class Book {
     var Price: String? = null
 
     @JsonProperty("Qty")
-    var Qty: String? = null
+    var Qty: Int = 0
 
 
 
-    constructor(title: String, description : String, isbn : String, author : String, genre : String, pages:String, ageRange:String, price:String, quantity:String) {
+    constructor(title: String, description : String, isbn : String, author : String, genre : String, pages:String, ageRange:String, price:String, quantity:Int) {
         this.Title = title
         this.Description = description
         this.ISBN = isbn

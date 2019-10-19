@@ -23,8 +23,9 @@ fun main(args: Array<String>) {
 
 
     /*      JSON FILE      */
-    books = jsonParser.readJsonFileKotlin("C:\\Users\\duzen\\source\\repos\\Bookstore-ImportBooks\\src\\TestFiles\\books_mod.json", books)
+    books = jsonParser.readJsonFileKotlin("C:\\Users\\duzen\\source\\repos\\Bookstore-ImportBooks\\src\\TestFiles\\books.json", books)
 
 
+    print(books)
 
 }
