@@ -7,29 +7,35 @@ import com.google.gson.GsonBuilder
 
 fun main(args: Array<String>) {
 
-    val csvParser : CsvParser = CsvParser()
-    val jsonParser:JsonParser = JsonParser()
-
+    var basePath = args[0].toString()
+    //var basePath = "C:\\Users\\duzen\\source\\repos\\Bookstore-ImportBooks\\src\\TestFiles\\"
+    val csvParser = CsvParser()
+    val jsonParser = JsonParser()
     var books = ArrayList<Book>()
 
-    /*      CSV FILE      */
-    books = csvParser.readCsvFileKotlin("C:\\Users\\duzen\\source\\repos\\Bookstore-ImportBooks\\src\\TestFiles\\books.csv", books)
+    File(basePath).walkTopDown().forEach {
+        if(it.extension.toLowerCase() == "json") {
+//            print(it.absolutePath + "\n\n")
+            books = jsonParser.readJsonFileKotlin(it.absolutePath, books)
 
 
+        }
+        else if(it.extension.toLowerCase() == "txt"){
+//            print(it.absolutePath+ "\n\n")
+            var content = File(it.absolutePath).readText()
+            //remove comma from description and replace tab with comma
+            var result = content.replace(",","").replace("\t", ", ")
+            books = csvParser.readCsvFileKotlinContent(result, books)
 
-    /*      TAB FILE      */
-    var content = File("C:\\\\Users\\\\duzen\\\\source\\\\repos\\\\Bookstore-ImportBooks\\\\src\\\\TestFiles\\\\books-tab.txt").readText()
-    //remove comma from description and replace tab with comma
-    var result = content.replace(",","").replace("\t", ", ")
-    books = csvParser.readCsvFileKotlinContent(result, books)
+        }
+        else if(it.extension.toLowerCase() == "csv"){
+//            print(it.absolutePath+ "\n\n")
+            books = csvParser.readCsvFileKotlin(it.absolutePath, books)
 
-
-    /*      JSON FILE      */
-    books = jsonParser.readJsonFileKotlin("C:\\Users\\duzen\\source\\repos\\Bookstore-ImportBooks\\src\\TestFiles\\books.json", books)
+        }
+    }
 
     val gson = GsonBuilder().setPrettyPrinting().create()
     val jsonBookList: String = gson.toJson(books)
-
-    File("C:\\Users\\duzen\\source\\repos\\Bookstore-ImportBooks\\src\\TestFiles\\books-consolidated.json").writeText(jsonBookList)
-
+    File(basePath + "\\books-consolidated.json").writeText(jsonBookList)
 }

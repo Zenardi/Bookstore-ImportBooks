@@ -16,13 +16,13 @@ class CsvParser {
                 val mbrProperties = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)".toRegex())
                 var book : Book = Book()
                 //Title,Description,ISBN,Author,Genre,Pages,Age Range,Price,Qty.
-                var newIsbn : String = mbrProperties[2]
-                if( mbrProperties[2][0] == '0')
-                    newIsbn =  mbrProperties[2].substring(1)
+//                var newIsbn : String = mbrProperties[2]
+//                if( mbrProperties[2][0] == '0')
+//                    newIsbn =  mbrProperties[2].substring(1).replace(" ", "")
 
                 book.Title = mbrProperties[0]
                 book.Description = mbrProperties[1]
-                book.ISBN = newIsbn
+                book.ISBN = mbrProperties[2].toLong()
                 book.Author = mbrProperties[3]
                 book.Genre  = mbrProperties[4]
                 book.Pages = mbrProperties[5]
@@ -51,17 +51,17 @@ class CsvParser {
         for (line in reader.readLines()) {
 
             if(i>0) {
-                val mbrProperties = line.split(",")
+                val mbrProperties = line.split(", ")
                 var book : Book = Book()
                 //Title,Description,ISBN,Author,Genre,Pages,Age Range,Price,Qty.
-                var newIsbn : String = mbrProperties[2]
-                if( mbrProperties[2][0] == '0')
-                    newIsbn =  mbrProperties[2].substring(1)
+//                var newIsbn : String = mbrProperties[2]
+//                if( mbrProperties[2][0] == '0')
+//                    newIsbn =  mbrProperties[2].substring(1).replace(" ", "")
 
 
                 book.Title = mbrProperties[0]
                 book.Description = mbrProperties[1]
-                book.ISBN = newIsbn
+                book.ISBN = mbrProperties[2].toLong()
                 book.Author = mbrProperties[3]
                 book.Genre  = mbrProperties[4]
                 book.Pages = mbrProperties[5]

@@ -14,7 +14,7 @@ public class Book {
     var Description: String? = null
 
     @JsonProperty("ISBN")
-    var ISBN: String = String()
+    var ISBN: Long = 0
 
     @JsonProperty("Author")
     var Author: String? = null
@@ -36,7 +36,7 @@ public class Book {
 
 
 
-    constructor(title: String, description : String, isbn : String, author : String, genre : String, pages:String, ageRange:String, price:String, quantity:Int) {
+    constructor(title: String, description : String, isbn : Long, author : String, genre : String, pages:String, ageRange:String, price:String, quantity:Int) {
         this.Title = title
         this.Description = description
         this.ISBN = isbn
@@ -46,20 +46,6 @@ public class Book {
         this.Price = price
         this.Qty = quantity
     }
-
-//    constructor(jsonObject: JsonObject) {
-//        this.id = jsonObject.getString("_id")
-//        this.title = jsonObject.getString("title")
-//        this.description = jsonObject.getString("description")
-//        this.isbn = jsonObject.getString("isbn")
-//        this.author = jsonObject.getString("author")
-//        this.genre = jsonObject.getString("genre")
-//        this.pages = jsonObject.getInteger("pages")
-//        this.ageRange = jsonObject.getString("ageRange")
-//        this.price = jsonObject.getFloat("price")
-//        this.quantity = jsonObject.getInteger("quantity")
-//
-//    }
 
     constructor(book: Book) {
         //.id = book.id

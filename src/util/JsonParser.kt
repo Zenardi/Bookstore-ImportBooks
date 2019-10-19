@@ -19,9 +19,9 @@ class JsonParser{
         var result = mapper.readValue<List<Book>>(content)
 
         for(book in result){
-            var newIsbn : String = book.ISBN
-            if( book.ISBN[0] == '0')
-                newIsbn =  book.ISBN.substring(1)
+//            var newIsbn : String = book.ISBN
+//            if( book.ISBN[0] == '0')
+//                newIsbn =  book.ISBN.substring(1).replace(" ", "")
 
            newBookList =  bookOp.CreateUpdateBook(books, book)
         }
