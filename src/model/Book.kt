@@ -1,18 +1,39 @@
 package model
 
-//@JsonClass(generateAdapter = true)
+import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.annotation.JsonProperty
+
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Book {
 
    // var id: String? = null
+   @JsonProperty("Title")
     var Title: String? = null
+
+    @JsonProperty("Description")
     var Description: String? = null
+
+    @JsonProperty("ISBN")
     var ISBN: String? = null
+
+    @JsonProperty("Author")
     var Author: String? = null
+
+    @JsonProperty("Genre")
     var Genre: String? = null
+
+    @JsonProperty("Pages")
     var Pages: String? = null
+
+    @JsonProperty("AgeRange")
     var AgeRange: String? = null
+
+    @JsonProperty("Price")
     var Price: String? = null
+
+    @JsonProperty("Qty")
     var Qty: String? = null
+
 
 
     constructor(title: String, description : String, isbn : String, author : String, genre : String, pages:String, ageRange:String, price:String, quantity:String) {
