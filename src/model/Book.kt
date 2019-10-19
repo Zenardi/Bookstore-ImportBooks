@@ -1,5 +1,6 @@
 package model
 
+//@JsonClass(generateAdapter = true)
 public class Book {
 
    // var id: String? = null
