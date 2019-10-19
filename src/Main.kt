@@ -2,6 +2,8 @@ import model.Book
 import util.CsvParser
 import util.JsonParser
 import java.io.File
+import com.google.gson.GsonBuilder
+
 
 fun main(args: Array<String>) {
 
@@ -25,7 +27,9 @@ fun main(args: Array<String>) {
     /*      JSON FILE      */
     books = jsonParser.readJsonFileKotlin("C:\\Users\\duzen\\source\\repos\\Bookstore-ImportBooks\\src\\TestFiles\\books.json", books)
 
+    val gson = GsonBuilder().setPrettyPrinting().create()
+    val jsonBookList: String = gson.toJson(books)
 
-    print(books)
+    File("C:\\Users\\duzen\\source\\repos\\Bookstore-ImportBooks\\src\\TestFiles\\books-consolidated.json").writeText(jsonBookList)
 
 }
