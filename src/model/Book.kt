@@ -2,19 +2,28 @@ package model
 
 public class Book {
 
-    var id: String? = null
-    var title: String? = null
-    var description: String? = null
-    var isbn: String? = null
-    var author: String? = null
-    var genre: String? = null
-    var pages: Int? = null
-    var ageRange: String? = null
-    var price: Float? = null
-    var quantity: Int? = null
+   // var id: String? = null
+    var Title: String? = null
+    var Description: String? = null
+    var ISBN: String? = null
+    var Author: String? = null
+    var Genre: String? = null
+    var Pages: String? = null
+    var AgeRange: String? = null
+    var Price: String? = null
+    var Qty: String? = null
 
 
-    constructor() {}
+    constructor(title: String, description : String, isbn : String, author : String, genre : String, pages:String, ageRange:String, price:String, quantity:String) {
+        this.Title = title
+        this.Description = description
+        this.ISBN = isbn
+        this.Author = author
+        this.Genre = genre
+        this.Pages = pages
+        this.Price = price
+        this.Qty = quantity
+    }
 
 //    constructor(jsonObject: JsonObject) {
 //        this.id = jsonObject.getString("_id")
@@ -31,18 +40,18 @@ public class Book {
 //    }
 
     constructor(book: Book) {
-        this.id = book.id
-        this.title = book.title
-        this.description = book.description
-        this.isbn = book.isbn
-        this.author = book.author
-        this.genre = book.genre
-        this.pages = book.pages
-        this.ageRange = book.ageRange
-        this.price = book.price
-        this.quantity = book.quantity
+        //.id = book.id
+        this.Title = book.Title
+        this.Description = book.Description
+        this.ISBN = book.ISBN
+        this.Author = book.Author
+        this.Genre = book.Genre
+        this.Pages = book.Pages
+        this.AgeRange = book.AgeRange
+        this.Price = book.Price
+        this.Qty = book.Qty
 
     }
-
+    constructor()
     constructor(book: Map.Entry<String, Any>)
 }
