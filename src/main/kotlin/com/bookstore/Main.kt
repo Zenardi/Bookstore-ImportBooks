@@ -1,15 +1,25 @@
 package com.bookstore.importbooks
 
+import com.fasterxml.jackson.databind.JsonNode
 import main.java.model.Book
 import main.java.util.CsvParser
 import main.java.util.JsonParser
 import java.io.File
 import com.google.gson.GsonBuilder
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.dataformat.csv.CsvSchema
+import com.fasterxml.jackson.dataformat.csv.CsvMapper
+
+
+
+
+
+
 
 
 fun main(args: Array<String>) {
-    var basePath = args[0].toString()
-    //var basePath = "C:\\Users\\duzen\\source\\repos\\Bookstore-ImportBooks\\src\\TestFiles\\"
+    //var basePath = args[0].toString()
+    var basePath = "C:\\Users\\duzen\\source\\repos\\Bookstore-ImportBooks\\src\\main\\kotlin\\com\\bookstore\\TestFiles"
     val csvParser = CsvParser()
     val jsonParser = JsonParser()
     var books = ArrayList<Book>()
@@ -29,9 +39,23 @@ fun main(args: Array<String>) {
         }
     }
 
+    //TODO order
+    //books = books.toList().
+
     val gson = GsonBuilder().setPrettyPrinting().create()
     val jsonBookList: String = gson.toJson(books)
     File(basePath + "\\books-consolidated.json").writeText(jsonBookList)
+
+    val jsonTree = ObjectMapper().readTree(File(basePath + "\\books-consolidated.json"))
+    val csvSchemaBuilder = CsvSchema.builder()
+    val firstObject = jsonTree.elements().next()
+    firstObject.fieldNames().forEachRemaining { fieldName -> csvSchemaBuilder.addColumn(fieldName) }
+    val csvSchema = csvSchemaBuilder.build().withHeader()
+
+    val csvMapper = CsvMapper()
+    csvMapper.writerFor(JsonNode::class.java)
+        .with(csvSchema)
+        .writeValue(File(basePath + "\\books-consolidated.csv"), jsonTree)
 }
 
 
