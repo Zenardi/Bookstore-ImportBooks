@@ -18,8 +18,8 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper
 
 
 fun main(args: Array<String>) {
-    //var basePath = args[0].toString()
-    var basePath = "C:\\Users\\duzen\\source\\repos\\Bookstore-ImportBooks\\src\\main\\kotlin\\com\\bookstore\\TestFiles"
+    var basePath = args[0].toString()
+    //var basePath = "C:\\Users\\duzen\\source\\repos\\Bookstore-ImportBooks\\src\\main\\kotlin\\com\\bookstore\\TestFiles"
     val csvParser = CsvParser()
     val jsonParser = JsonParser()
     var books = ArrayList<Book>()
